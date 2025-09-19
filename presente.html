@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Bodas de Sorvete, Meu Amor!</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS E ANIMAÇÕES --- */
+        
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes cursorBlink {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #87CEFA;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0;
+            overflow-x: hidden;
+        }
+
+        .random-sorvetinho {
+            position: fixed;
+            font-size: 3em;
+            opacity: 0.2;
+            z-index: -1;
+            pointer-events: none;
+            animation: spin 8s linear infinite;
+        }
+
+        /* --- ESTILOS DO CONTEÚDO PRINCIPAL --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 10px;
+            position: relative;
+        }
+        
+        .header {
+            padding: 20px 0;
+            animation: slideInUp 1s ease-out;
+        }
+        
+        .header h1 {
+            font-family: 'Honk', system-ui;
+            font-size: 3.5em;
+            color: #FF69B4;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 0;
+            transition: transform 0.3s;
+        }
+        
+        .header h1:hover {
+            transform: rotate(-3deg);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #333; 
+            font-family: 'Pacifico', cursive;
+            margin-top: 5px;
+        }
+
+        .header .data {
+            font-weight: bold;
+            color: #555;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        .mensagem-sorvete {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 40px;
+            max-width: 650px;
+            margin: 40px auto;
+            animation: slideInUp 1s ease-out 0.5s both;
+        }
+        
+        .mensagem-sorvete h2 {
+            color: #87CEFA;
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5em;
+            margin-top: 0;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #333;
+            margin-left: 2px;
+            vertical-align: bottom;
+            animation: cursorBlink 0.7s infinite;
+        }
+
+        .ice-cream-cone {
+            background-color: #FFC0CB;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .ice-cream-cone:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .ice-cream-cone p {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.1em;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #FFC0CB;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .modal-content h3 {
+            font-family: 'Honk', system-ui;
+            color: #fff;
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Feliz Bodas de Sorvete!</h1>
+            <p>+ 2 meses do resto das nossas vidas ❤️</p>
+            <p class="data">20 de setembro de 2025</p>
+        </div>
+        
+        <div class="mensagem-sorvete">
+            <h2>Jorege Fernando Fernandes</h2>
+            <p id="cartinha-texto">
+                </p>
+
+            <div class="ice-cream-cone" id="sorvete-interativo">
+                <p>Clique aqui!</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-beijo" class="modal">
+        <div class="modal-content">
+            <h3>Você é o amor da minha vida!</h3>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('sorvete-interativo').addEventListener('click', function() {
+            var modal = document.getElementById('modal-beijo');
+            modal.style.display = 'flex';
+            
+            setTimeout(function() {
+                modal.style.display = 'none';
+            }, 3000);
+        });
+
+        function createRandomSorvetinhos(num) {
+            for (let i = 0; i < num; i++) {
+                const sorvetinho = document.createElement('span');
+                sorvetinho.innerHTML = '🍦';
+                sorvetinho.classList.add('random-sorvetinho');
+                
+                sorvetinho.style.top = Math.random() * 100 + 'vh';
+                sorvetinho.style.left = Math.random() * 100 + 'vw';
+                
+                sorvetinho.style.animationDuration = Math.random() * 10 + 5 + 's';
+                sorvetinho.style.fontSize = Math.random() * 2 + 2 + 'em';
+                
+                document.body.appendChild(sorvetinho);
+            }
+        }
+        
+        createRandomSorvetinhos(50);
+
+        // SCRIPT CORRIGIDO PARA O EFEITO DE DIGITAÇÃO
+        const cartinhaElemento = document.getElementById('cartinha-texto');
+        const textoCompleto = `
+         Obrigada por me encontrar — eu tava meio perdida sem você.
+Eu te amo (mesmo sendo mimadinho e não acostumado com restrição, kkk).
+Obrigada por apostar em mim e por estar sempre ao meu lado. Com você, os dias ficam leves e doces, feito sorvete.
+Me apaixono mais por você todos os dias. 💖🍦`;
+
+        let i = 0;
+        const velocidade = 30;
+        let textoAtual = '';
+
+        // Adiciona o cursor no início
+        const cursor = document.createElement('span');
+        cursor.classList.add('cursor');
+        cartinhaElemento.appendChild(cursor);
+
+        function typeWriter() {
+            if (i < textoCompleto.length) {
+                const char = textoCompleto.charAt(i);
+
+                if (char === '\n') {
+                    textoAtual += '<br>';
+                } else {
+                    textoAtual += char;
+                }
+                
+                // Atualiza o texto do parágrafo, mantendo o cursor no final
+                cartinhaElemento.innerHTML = textoAtual;
+                cartinhaElemento.appendChild(cursor);
+
+                i++;
+                setTimeout(typeWriter, velocidade);
+            } else {
+                // Remove o cursor após a digitação
+                cursor.remove();
+            }
+        }
+        
+        // Inicia a digitação após um pequeno atraso
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
